@@ -33,6 +33,8 @@ import { MarkdownModule } from 'ngx-markdown';
 import { FormularioCineComponent } from './cines/formulario-cine/formulario-cine.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MapaComponent } from './utilidades/mapa/mapa.component';
+import "leaflet/dist/images/marker-shadow.png";
+import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/formulario-pelicula.component';
 
 
 
@@ -63,6 +65,7 @@ import { MapaComponent } from './utilidades/mapa/mapa.component';
     InputMarkdownComponent,
     FormularioCineComponent,
     MapaComponent,
+    FormularioPeliculaComponent,
 
   ],
   imports: [

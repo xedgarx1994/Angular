@@ -5,8 +5,14 @@
         <mat-error *ngIf = "form.invalid">El campo es obligatorio</mat-error>
     </mat-form-field>
 
+    <h4>
+        Seleccione el cine en el mapa
+    </h4>
     <div>
-        <app-mapa></app-mapa>
+        <app-mapa
+        (coordenadaSeleccionada) = "coordenadaSelecionada($event)"
+        [coordenadasIniciales] = "coordenadaInicial"
+         ></app-mapa>
     </div>
 
     <div>
