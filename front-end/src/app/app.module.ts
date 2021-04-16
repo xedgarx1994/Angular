@@ -23,7 +23,7 @@ import { EditarActorComponent } from './actores/editar-actor/editar-actor.compon
 import { EditarGeneroComponent } from './generos/editar-genero/editar-genero.component';
 import { EditarCineComponent } from './cines/editar-cine/editar-cine.component';
 import { EditarPeliculaComponent } from './peliculas/editar-pelicula/editar-pelicula.component';
-import { ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { FormularioGeneroComponent } from './generos/formulario-genero/formulario-genero.component';
 import { FiltroPeliculasComponent } from './peliculas/filtro-peliculas/filtro-peliculas.component';
 import { FormularioActoresComponent } from './actores/formulario-actores/formulario-actores.component';
@@ -35,6 +35,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MapaComponent } from './utilidades/mapa/mapa.component';
 import "leaflet/dist/images/marker-shadow.png";
 import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/formulario-pelicula.component';
+import { SelectorMultipleComponent } from './utilidades/selector-multiple/selector-multiple.component';
 
 
 
@@ -66,6 +67,7 @@ import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/for
     FormularioCineComponent,
     MapaComponent,
     FormularioPeliculaComponent,
+    SelectorMultipleComponent,
 
   ],
   imports: [
@@ -76,6 +78,7 @@ import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/for
     MatIconModule,
     MatButtonModule,
     ReactiveFormsModule,
+    FormsModule,
     LeafletModule,
     MarkdownModule.forRoot()
   ],

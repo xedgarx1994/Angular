@@ -15,4 +15,7 @@ enCines: true, resumen : '# Pelicula de prueba', fechaLanzamiento : new Date(), 
   ngOnInit(): void {
   }
 
+  guardarCambios(pelicula: PeliculaCreacionDTO){
+    console.log(pelicula);
+  }
 }
