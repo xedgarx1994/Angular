@@ -36,6 +36,7 @@ import { MapaComponent } from './utilidades/mapa/mapa.component';
 import "leaflet/dist/images/marker-shadow.png";
 import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/formulario-pelicula.component';
 import { SelectorMultipleComponent } from './utilidades/selector-multiple/selector-multiple.component';
+import { AutocompleteComponent } from './actores/autocomplete/autocomplete.component';
 
 
 
@@ -68,6 +69,7 @@ import { SelectorMultipleComponent } from './utilidades/selector-multiple/select
     MapaComponent,
     FormularioPeliculaComponent,
     SelectorMultipleComponent,
+    AutocompleteComponent,
 
   ],
   imports: [

@@ -38,7 +38,19 @@
     <h4>
         Seleccione los generos
     </h4>
-    <app-selector-multiple [NoSeleccionados] = "generosNoSeleccionados"></app-selector-multiple>
+    <app-selector-multiple 
+    [Seleccionados] = "generosSeleccionados"
+    [NoSeleccionados] = "generosNoSeleccionados"></app-selector-multiple>
+
+    <h4>
+        Seleccione los Cines
+    </h4>
+    <app-selector-multiple 
+    [Seleccionados] = "cinesSeleccionados"
+    [NoSeleccionados] = "cinesNoSeleccionados"></app-selector-multiple>
+
+    <h4>Seleccione los Actores</h4>
+    <app-autocomplete></app-autocomplete>
     <div>
         <button mat-flat-button color ="primary" [disabled]="form.invalid">
             Guardar Cambios
