@@ -37,6 +37,7 @@ import "leaflet/dist/images/marker-shadow.png";
 import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/formulario-pelicula.component';
 import { SelectorMultipleComponent } from './utilidades/selector-multiple/selector-multiple.component';
 import { AutocompleteComponent } from './actores/autocomplete/autocomplete.component';
+import { HttpClientModule } from '@angular/common/http'
 
 
 
@@ -82,7 +83,8 @@ import { AutocompleteComponent } from './actores/autocomplete/autocomplete.compo
     ReactiveFormsModule,
     FormsModule,
     LeafletModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
