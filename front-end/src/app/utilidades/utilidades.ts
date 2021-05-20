@@ -16,7 +16,7 @@ export function parsearErroresAPI(response: any): string[]{
         else
         {
             const mapaErrores = response.error.errors;
-            const entradas = Object.entries(mapaErrores);
+            const entradas = Object.entries(mapaErrores);    
             entradas.forEach((arreglo: any[]) =>{
                 const campo = arreglo[0];
                 arreglo[1].forEach((mensajeError: any) => {
