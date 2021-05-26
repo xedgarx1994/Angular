@@ -19,7 +19,19 @@ export class GenerosService {
     params = params.append('RecordPorPagina', cantidadRegistroAMostrar.toString());
     return this.http.get<generoDTO[]>(this.apiURL, {observe: 'response', params})
   }
+
+  public obtenerPorId(id: number): Observable<generoDTO>{
+    return this.http.get<generoDTO>(`${this.apiURL}/${id}`)
+  }
   public crear(genero: generoCreacionDTO){
     return this.http.post(this.apiURL, genero);
+  }
+
+  public editar(id: number, genero: generoCreacionDTO){
+    return this.http.put(`${this.apiURL}/${id}`, genero);
+  }
+
+  public borrar(id:number){
+    return this.http.delete(`${this.apiURL}/${id}`);
   }
 }

@@ -39,6 +39,7 @@ import { SelectorMultipleComponent } from './utilidades/selector-multiple/select
 import { AutocompleteComponent } from './actores/autocomplete/autocomplete.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-errores.component'
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 
@@ -86,7 +87,8 @@ import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-er
     FormsModule,
     LeafletModule,
     MarkdownModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

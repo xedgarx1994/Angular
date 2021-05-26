@@ -22,4 +22,5 @@ describe('IndicesGenerosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
