@@ -1,4 +1,5 @@
-<form (submit)= "OnSubmit()"[formGroup]  ="form">
+<app-mostrar-errores [errores] = "errores"></app-mostrar-errores>
+<form (submit)= "onSubmit()"[formGroup]  ="form">
     <mat-form-field appearance = "outline">
         <mat-label>Nombre</mat-label>
         <input formControlName ="nombre" matInput />

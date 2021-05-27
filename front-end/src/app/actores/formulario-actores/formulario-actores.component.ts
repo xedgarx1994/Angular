@@ -16,8 +16,12 @@ export class FormularioActoresComponent implements OnInit {
 
   @Input()
   modelo: actorDTO | any;
+
+  @Input()
+  errores: string[] = [];
+
   @Output()
-    submit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>();
+    OnSubmit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>();
 
   ngOnInit(): void {
     this.form= this.FormBuilder.group({
@@ -44,7 +48,7 @@ export class FormularioActoresComponent implements OnInit {
   cambioMarkdown(texto: string | any){
     this.form.get('biografia').setValue(texto);
   }
-  OnSubmit(){
-    this.submit.emit(this.form.value);
+  onSubmit(){
+    this.OnSubmit.emit(this.form.value);
   }
 }
