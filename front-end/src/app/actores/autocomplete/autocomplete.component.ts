@@ -1,8 +1,10 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatTable } from '@angular/material/table';
+import { actorPeliculaDTO } from '../actor';
+import { ActoresService } from '../actores.service';
 
 @Component({
   selector: 'app-autocomplete',
@@ -11,27 +13,25 @@ import { MatTable } from '@angular/material/table';
 })
 export class AutocompleteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actoresService : ActoresService) { }
 
   control: FormControl = new FormControl();
 
-  actores = [{nombre: 'Jake Gyllenhaal', personaje: '', foto: 'https://m.media-amazon.com/images/M/MV5BNjA0MTU2NDY3MF5BMl5BanBnXkFtZTgwNDU4ODkzMzE@._V1_UX214_CR0,0,214,317_AL_.jpg'},
-  {nombre: 'Tom Hardy', personaje: '', foto: 'https://m.media-amazon.com/images/M/MV5BMTQ3ODEyNjA4Nl5BMl5BanBnXkFtZTgwMTE4ODMyMjE@._V1_UX214_CR0,0,214,317_AL_.jpg'},
-  {nombre: 'Jake J. Meniani', personaje: '', foto: 'https://m.media-amazon.com/images/M/MV5BYzVjYWM0ZTUtMzg5Ny00NDdmLWJkMTEtNGQ5OGFjZTQ4OGE3XkEyXkFqcGdeQXVyNTQzOTQ3OTU@._V1_UY317_CR20,0,214,317_AL_.jpg'}]  
+  @Input()
+  actoresSeleccionados : actorPeliculaDTO[] = [];
 
-  actoresOriginal = this.actores;
-
-  actoresSeleccionados =[] as any;
+  actoresAMostrar: actorPeliculaDTO[] | any;
 
   columnasAMostrar = ['imagen', 'nombre', 'personaje', 'acciones'];
 
   @ViewChild(MatTable) table: MatTable<any> | any;
 
   ngOnInit(): void {
-    this.control.valueChanges.subscribe(valor => {
-      this.actores = this.actoresOriginal;
-      this.actores = this.actores.filter(actor => actor.nombre.indexOf(valor) !== -1)
-    })
+    this.control.valueChanges.subscribe(nombre => {
+      this.actoresService.obtenerPorNombre(nombre).subscribe(actores =>{
+        this.actoresAMostrar = actores;
+      })
+    });
   }
 
   opcionSelected(event: MatAutocompleteSelectedEvent){

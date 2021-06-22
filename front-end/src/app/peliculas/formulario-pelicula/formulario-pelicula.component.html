@@ -1,3 +1,4 @@
+<app-mostrar-errores [errores] = "errores"></app-mostrar-errores>
 <form (submit) = "guardarCambios()" [formGroup] = "form">
     <mat-form-field appearance = "outline">
         <mat-label>Titulo</mat-label>
@@ -50,7 +51,9 @@
     [NoSeleccionados] = "cinesNoSeleccionados"></app-selector-multiple>
 
     <h4>Seleccione los Actores</h4>
-    <app-autocomplete></app-autocomplete>
+    <app-autocomplete
+    [actoresSeleccionados] = "actoresSeleccionados"
+    ></app-autocomplete>
     <div>
         <button mat-flat-button color ="primary" [disabled]="form.invalid">
             Guardar Cambios
