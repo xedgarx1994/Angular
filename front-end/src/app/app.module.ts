@@ -40,6 +40,7 @@ import { AutocompleteComponent } from './actores/autocomplete/autocomplete.compo
 import { HttpClientModule } from '@angular/common/http';
 import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-errores.component'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
 
 
 
@@ -74,6 +75,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SelectorMultipleComponent,
     AutocompleteComponent,
     MostrarErroresComponent,
+    DetallePeliculaComponent,
 
   ],
   imports: [

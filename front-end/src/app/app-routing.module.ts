@@ -13,12 +13,12 @@ import { EditarCineComponent } from './cines/editar-cine/editar-cine.component';
 import { EditarPeliculaComponent } from './peliculas/editar-pelicula/editar-pelicula.component';
 import { EditarGeneroComponent } from './generos/editar-genero/editar-genero.component';
 import { FiltroPeliculasComponent } from './peliculas/filtro-peliculas/filtro-peliculas.component';
+import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
   {path: 'generos',component :IndicesGenerosComponent},
   {path: 'generos/crear', component:CrearGeneroComponent},
-
   {path: 'actores',component :IndiceActoresComponent},
   {path: 'actores/crear', component:CrearActoresComponent},
   {path: 'actores/editar/:id', component: EditarActorComponent},
@@ -26,10 +26,9 @@ const routes: Routes = [
   {path: 'peliculas/editar/:id', component: EditarPeliculaComponent},
   {path: 'generos/editar/:id', component: EditarGeneroComponent},
   {path: 'peliculas/buscar', component: FiltroPeliculasComponent},
-
+  {path: 'pelicula/:id', component: DetallePeliculaComponent},
   {path: 'cines',component :IndiceCineComponent},
   {path: 'cines/crear', component:CrearCineComponent},
-
   {path: 'peliculas/crear', component:CrearPeliculaComponent},
   {path: '**', redirectTo: ''} //ayuda a poner en el inicio si no se encontro la ruta. WILDCARD '**'
 ];
