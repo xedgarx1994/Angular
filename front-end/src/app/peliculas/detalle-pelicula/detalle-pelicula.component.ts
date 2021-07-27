@@ -3,7 +3,7 @@ import { PeliculasService } from '../peliculas.service';
 import { ActivatedRoute } from '@angular/router';
 import { PeliculaDTO } from '../peliculas';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Coordenada, CoordenadaConMensaje } from '../../utilidades/mapa/coordenada';
+import { Coordenada } from '../../utilidades/mapa/coordenada';
 
 @Component({
   selector: 'app-detalle-pelicula',
@@ -19,7 +19,7 @@ export class DetallePeliculaComponent implements OnInit {
     pelicula: PeliculaDTO | any;
     fechaLanzamiento: Date | any;
     trailerURL: SafeResourceUrl | any;
-    coordenadas: CoordenadaConMensaje[] = [];
+    coordenadas: Coordenada[] = [];
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.peliculasService.obtenerPorId(params.id).subscribe(pelicula => {

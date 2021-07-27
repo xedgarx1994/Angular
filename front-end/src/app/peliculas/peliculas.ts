@@ -14,6 +14,7 @@ export interface PeliculaCreacionDTO{
 }
 
 export interface PeliculaDTO{
+    id: number;
     titulo: string;
     resumen: string;
     enCines: boolean;
@@ -28,4 +29,9 @@ export interface PeliculaDTO{
 export interface PeliculaPostGet{
     generos: generoDTO[];
     cines: cineDTO[];
+}
+
+export interface LandingPageDTO{
+    enCines: PeliculaDTO[];
+    proximosEstrenos: PeliculaDTO[];
 }

@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div style="padding-left: 1rem;" *ngIf= "coordenadas.length > 0">
+    <div style="padding-left: 1rem; position: relative; width: 100%;" *ngIf= "coordenadas.length > 0">
         <h2>Mostrándose en los siguientes cines</h2>
         <app-mapa [coordenadasIniciales] = "coordenadas" [soloLectura]="true"></app-mapa>
     </div>

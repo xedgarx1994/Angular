@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { tileLayer, latLng, LeafletMouseEvent, Marker, marker } from 'leaflet';
-import { Coordenada, CoordenadaConMensaje } from './coordenada';
+import { Coordenada } from './coordenada';
 
 @Component({
   selector: 'app-mapa',
@@ -12,7 +12,7 @@ export class MapaComponent implements OnInit {
   constructor() { }
 
   @Input()
-  coordenadasIniciales: CoordenadaConMensaje[] = [];
+  coordenadasIniciales: Coordenada[] = [];
 
   @Input()
   soloLectura: boolean = false;
