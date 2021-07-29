@@ -27,11 +27,13 @@ export class FormularioPeliculaComponent implements OnInit {
   @Input()
   generosNoSeleccionados: MultipleSelectorModel[] | any;
 
+  @Input()
   generosSeleccionados: MultipleSelectorModel[] = [];
 
   @Input()
   cinesNoSeleccionados: MultipleSelectorModel[] | any;
 
+  @Input()
   cinesSeleccionados: MultipleSelectorModel[] = [];
 
   @Input()
