@@ -37,6 +37,7 @@ export class EditarPeliculaComponent implements OnInit {
 
         this.cinesSeleccionados =peliculaPutGet.cinesSeleccionados.map(cine => {
           return <MultipleSelectorModel>{llave: cine.id, valor: cine.nombre}
+        });
 
         this.cinesNoSeleccionados =peliculaPutGet.cinesNoSeleccionados.map(cine => {
           return <MultipleSelectorModel>{llave: cine.id, valor: cine.nombre}
@@ -44,7 +45,6 @@ export class EditarPeliculaComponent implements OnInit {
 
         this.actoresSeleccionados = peliculaPutGet.actores;
       });
-    });
   })
 }
 
