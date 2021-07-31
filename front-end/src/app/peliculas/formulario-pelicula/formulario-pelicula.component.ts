@@ -39,6 +39,7 @@ export class FormularioPeliculaComponent implements OnInit {
   @Input()
   actoresSeleccionados: actorPeliculaDTO[] = [];
 
+  imagenCambiada = false;
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       titulo: [
@@ -74,11 +75,15 @@ export class FormularioPeliculaComponent implements OnInit {
     });
     this.form.get('actores').setValue(actores)
 
+    if(!this.imagenCambiada){
+      this.form.patchValue({'poster': null});
+    }
     this.OnSubmit.emit(this.form.value);
   }
 
   archivoSelecionado(archivo: File){
     this.form.get('poster').setValue(archivo);
+    this.imagenCambiada = true;
   }
 
   changeMarkdown(texto: any){

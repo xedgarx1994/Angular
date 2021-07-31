@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PeliculaCreacionDTO, PeliculaDTO } from '../peliculas';
 import { PeliculasService } from '../peliculas.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MultipleSelectorModel } from '../../utilidades/selector-multiple/MultipleSelectorModel';
 import { actorPeliculaDTO } from 'src/app/actores/actor';
 
@@ -13,7 +13,8 @@ import { actorPeliculaDTO } from 'src/app/actores/actor';
 export class EditarPeliculaComponent implements OnInit {
 
   constructor(private peliculasService: PeliculasService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private router : Router) { }
 
   modelo: PeliculaDTO | any;
   generosSeleccionados: MultipleSelectorModel[] | any;
@@ -49,6 +50,7 @@ export class EditarPeliculaComponent implements OnInit {
 }
 
   guardarCambios(pelicula: PeliculaCreacionDTO){
-    console.log(pelicula);
+    this.peliculasService.editar(this.modelo.id, pelicula)
+    .subscribe(() => this.router.navigate(['/pelicula/'+ this.modelo.id]))
   }
 }

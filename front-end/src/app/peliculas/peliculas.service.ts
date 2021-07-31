@@ -28,9 +28,13 @@ export class PeliculasService {
   public putGet(id: number): Observable<PeliculaPutGet>{
     return this.http.get<PeliculaPutGet>(`${this.apiURL}/putget/${id}`)
   }
-  public crear(pelicula: PeliculaCreacionDTO){
+  public crear(pelicula: PeliculaCreacionDTO): Observable<number>{
     const formData = this.ConstruirFormData(pelicula);
-    return this.http.post(this.apiURL, formData);
+    return this.http.post<number>(this.apiURL, formData);
+  }
+  public editar(id: number, pelicula: PeliculaCreacionDTO){
+    const formData = this.ConstruirFormData(pelicula);
+    return this.http.put(`${this.apiURL}/${id}`, formData);
   }
   private ConstruirFormData(pelicula: PeliculaCreacionDTO): FormData{
     const formData = new FormData();
