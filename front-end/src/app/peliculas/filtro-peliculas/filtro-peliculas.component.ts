@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Location } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
+import { generoDTO } from '../../generos/genero';
+import { GenerosService } from '../../generos/generos.service';
+import { PeliculasService } from '../peliculas.service';
+import { PeliculaDTO } from '../peliculas';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-filtro-peliculas',
@@ -14,27 +19,19 @@ export class FiltroPeliculasComponent implements OnInit {
   constructor(private FormBuilder: FormBuilder,
     
   private location: Location,
-  private ActivatedRoute: ActivatedRoute) { }
+  private ActivatedRoute: ActivatedRoute,
+  private generosServices: GenerosService,
+  private peliculasServices: PeliculasService) { }
 
   form: any = FormGroup;
 
-  generos = [
-    {id:1, nombre:'Drama'}, 
-    {id: 2, nombre: 'Thriller'},
-    {id: 3, nombre: 'Acción'},
-    {id: 4, nombre: 'Anime'}
+  generos: generoDTO[] = [];
+  paginaActual = 1;
+  cantidadElementosAMostrar = 10;
+  cantidadElementos: any;
 
-  ];
+  peliculas: PeliculaDTO[] = [];
 
-
-  peliculas = [
-    {
-      titulo: 'Spider-Man: Far From Home', enCines: false, proximoEstrenos: true, generos:[1,3], poster: 'https://m.media-amazon.com/images/M/MV5BNTMxOGI4OGMtMTgwMy00NmFjLWIyOTUtYjQ0OGQ4Mjk0YjNjXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'},
-      {titulo: 'Bleach', enCines: true, proximoEstrenos: false, generos:[4], poster: 'https://m.media-amazon.com/images/M/MV5BZjE0YjVjODQtZGY2NS00MDcyLThhMDAtZGQwMTZiOWNmNjRiXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UX182_CR0,0,182,268_AL_.jpg'},
-      {titulo: 'Contra Tiempo', enCines: false, proximoEstrenos: false, generos:[1,2], poster: 'https://m.media-amazon.com/images/M/MV5BMDk0YzAwYjktMWFiZi00Y2FmLWJmMmMtMzUyZDZmMmU5MjkzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY268_CR3,0,182,268_AL_.jpg'}
-    ];
-
-    peliculasOriginales = this.peliculas;
 
     formularioOriginal = {
       titulo: '',
@@ -43,18 +40,22 @@ export class FiltroPeliculasComponent implements OnInit {
       enCines: false
     }
   ngOnInit(): void {
-    this.form = this.FormBuilder.group(this.formularioOriginal);
-    this.leerValoresURL();
-    this.buscarPeliculas(this.form.value);
+
+    this.generosServices.obtenerTodos()
+    .subscribe(generos => {
+      this.generos = generos;
+
+      this.form = this.FormBuilder.group(this.formularioOriginal);
+      this.leerValoresURL();
+      this.buscarPeliculas(this.form.value);
 
 
-    this.form.valueChanges
-    .subscribe((valores:any) => {
-      this.peliculas = this.peliculasOriginales;
+      this.form.valueChanges
+      .subscribe((valores:any) => {
       this.buscarPeliculas(valores);
       this.escribirParametrosBusquedaEnURL();//ayuda a mantener las url en caso de compartir hace que este se incie con el filtro si fuese el caso
       
-      // console.log(valores); //escuchado de cambios cuando el usuario escribe o selecciona algo
+      })
     })
   }
 
@@ -106,20 +107,20 @@ export class FiltroPeliculasComponent implements OnInit {
 
   }
   buscarPeliculas(valores:any){
-    if(valores.titulo){
-      this.peliculas = this.peliculas.filter(peliculas => peliculas.titulo.indexOf(valores.titulo) !== -1)
-    }
-    if(valores.generoId !== 0){
-      this.peliculas = this.peliculas.filter(peliculas => peliculas.generos.indexOf(valores.generoId) !== -1)
-    }
-    if(valores.proximoEstrenos){
-      this.peliculas = this.peliculas.filter(peliculas => peliculas.proximoEstrenos)
-    }
-    if(valores.enCines){
-      this.peliculas = this.peliculas.filter(peliculas => peliculas.enCines)
-    }
+    valores.pagina = this.paginaActual;
+    valores.recordsPorPagina = this.cantidadElementosAMostrar;
+    this.peliculasServices.filtrar(valores).subscribe(response =>{
+      this.peliculas = response.body;
+      this.escribirParametrosBusquedaEnURL();
+      this.cantidadElementos = response.headers.get('cantidadTotalRegistros');
+    })
   }
 limpiar(){
   this.form.patchValue(this.formularioOriginal);
+  }
+  paginatorUpdate(datos: PageEvent){
+    this.paginaActual = datos.pageIndex +1;
+    this.cantidadElementosAMostrar = datos.pageSize;
+    this.buscarPeliculas(this.form.value);
   }
 }

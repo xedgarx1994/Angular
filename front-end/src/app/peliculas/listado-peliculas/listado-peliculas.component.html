@@ -16,7 +16,12 @@
                         Editar
                     </a>
                     <button
-                    mat-flat-button color = "warn" type="button">
+                    mat-flat-button color = "warn" type="button"
+                    [swal]= "{title: 'Confirmación', 
+                    text: '¿Está seguro que desea eliminar el registro?',
+                    showCancelButton: true}"
+                    (confirm)= "borrar(pelicula.id)"
+                    >
                         Borrar
                     </button>
                 </div>
