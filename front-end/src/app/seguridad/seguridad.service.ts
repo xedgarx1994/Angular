@@ -11,6 +11,6 @@ export class SeguridadService {
     return true;
   }
   obtenerRol(): string{
-    return ''
+    return 'admin'
   }
 }
