@@ -1,3 +1,5 @@
+import { analyzeAndValidateNgModules } from "@angular/compiler";
+
 export function toBase64(file:File){
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -12,6 +14,10 @@ export function parsearErroresAPI(response: any): string[]{
     if(response.error){
         if(typeof response.error === 'string'){
             resultado.push(response.error);
+        }
+        else if(Array.isArray(response.error))
+        {
+            response.error.forEach((valor: any) => resultado.push(valor.description))
         }
         else
         {

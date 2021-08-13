@@ -43,6 +43,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
 import { AutorizadoComponent } from './seguridad/autorizado/autorizado.component';
 import { LoginComponent } from './seguridad/login/login.component';
+import { RegistroComponent } from './seguridad/registro/registro.component';
+import { FormularioAutentificacionComponent } from './seguridad/formulario-autentificacion/formulario-autentificacion.component';
 
 
 
@@ -80,6 +82,8 @@ import { LoginComponent } from './seguridad/login/login.component';
     DetallePeliculaComponent,
     AutorizadoComponent,
     LoginComponent,
+    RegistroComponent,
+    FormularioAutentificacionComponent,
 
   ],
   imports: [

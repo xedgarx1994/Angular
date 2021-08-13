@@ -26,4 +26,18 @@
         </div>
     </ng-container>
 </app-autorizado>
+
+<div class="espacio"></div>
+
+<app-autorizado>
+    <ng-container autorizado>
+        <span>Hola, </span>    
+        <a mat-button>Cerrar Sesión</a>
+    </ng-container>
+    <ng-container noAutorizado>
+        <a mat-button routerLink = "login">Iniciar Sesión</a>
+        <a mat-button routerLink = "registro">Registrarse</a>
+    </ng-container>
+    
+</app-autorizado>
 </mat-toolbar>
