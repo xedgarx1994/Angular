@@ -3,6 +3,8 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 // import * as EventEmitter from 'events';
 import { NEVER } from 'rxjs';
+import { SeguridadService } from 'src/app/seguridad/seguridad.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -22,7 +24,7 @@ export class RattingComponent implements OnInit {
   votado = false;
   RatingAnterior = 0;
 
-  constructor() { }
+  constructor(private seguridadSeguridad: SeguridadService) { }
 
   ngOnInit(): void {
     this.maximoRatingArr = Array(this.maximiorating).fill(0);
@@ -39,9 +41,14 @@ export class RattingComponent implements OnInit {
     }
   }
   rate(index:number):void{
-    this.ratingseleccionado = index +1;
-    this.votado = true;
-    this.RatingAnterior = this.ratingseleccionado;
-    this.rated.emit(this.ratingseleccionado);
+    if(this.seguridadSeguridad.estaLogeado()){
+      this.ratingseleccionado = index +1;
+      this.votado = true;
+      this.RatingAnterior = this.ratingseleccionado;
+      this.rated.emit(this.ratingseleccionado);
+    }
+    else{
+      Swal.fire('Warning', "Debe iniciar sesión para agregar su voto.", "error");
+    }
   }
 }

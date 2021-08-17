@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SeguridadService } from '../seguridad/seguridad.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public seguridadService: SeguridadService) { }
   ngOnInit(): void {
     
   }
