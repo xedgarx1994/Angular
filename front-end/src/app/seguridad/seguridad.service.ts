@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { credencialesUsuario, respuestaAutenticacion } from './seguridad';
+import { credencialesUsuario, respuestaAutenticacion, usuarioDTO } from './seguridad';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -14,7 +14,25 @@ export class SeguridadService {
   apiURL = environment.apiURL + 'cuentas'
   private readonly llaveToken = 'token';
   private readonly llaveExpiracion = 'token-expiracion'
+  private readonly campoRol = 'role';
 
+  obtenerUsuarios(pagina: number, recordsPorPagina:number): Observable<any>{
+    let params = new HttpParams();
+    params = params.append('pagina', pagina.toString());
+    params = params.append('recordsPorPagina', recordsPorPagina.toString());
+    return this.httpClient.get<usuarioDTO[]>(`${this.apiURL}/listadousuarios`, 
+    {observe: 'response', params})
+  }
+
+  hacerAdmin(usuarioId: string){
+    const headers = new HttpHeaders('Content-Type: application/json');
+    return this.httpClient.post(`${this.apiURL}/hacerAdmin`, JSON.stringify(usuarioId), {headers});
+  }
+
+  removerAdmin(usuarioId: string){
+    const headers = new HttpHeaders('Content-Type: application/json');
+    return this.httpClient.post(`${this.apiURL}/removerAdmin`, JSON.stringify(usuarioId), {headers});
+  }
   estaLogeado(): boolean{
     const token = localStorage.getItem(this.llaveToken);
     if(!token){
@@ -36,7 +54,7 @@ export class SeguridadService {
     localStorage.removeItem(this.llaveExpiracion);
   }
   obtenerRol(): string{
-    return ''
+    return this.obtenerCampoJWT(this.campoRol);
   }
 
   obtenerCampoJWT(campo: string): string{
@@ -60,6 +78,6 @@ export class SeguridadService {
 
   }
   obtenerToken(){
-    return localStorage.getItem(this.llaveExpiracion);
+    return localStorage.getItem(this.llaveToken);
   }
 }

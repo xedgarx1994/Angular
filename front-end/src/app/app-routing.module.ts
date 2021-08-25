@@ -17,6 +17,7 @@ import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-p
 import { EsAdminGuard } from './es-admin.guard';
 import { LoginComponent } from './seguridad/login/login.component';
 import { RegistroComponent } from './seguridad/registro/registro.component';
+import { IndiceUsuariosComponent } from './seguridad/indice-usuarios/indice-usuarios.component';
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'peliculas/crear', component:CrearPeliculaComponent, canActivate: [EsAdminGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
+  {path: 'usuarios', component: IndiceUsuariosComponent, canActivate: [EsAdminGuard]},
   {path: '**', redirectTo: ''} //ayuda a poner en el inicio si no se encontro la ruta. WILDCARD '**'
 ];
 

@@ -46,6 +46,7 @@ import { LoginComponent } from './seguridad/login/login.component';
 import { RegistroComponent } from './seguridad/registro/registro.component';
 import { FormularioAutentificacionComponent } from './seguridad/formulario-autentificacion/formulario-autentificacion.component';
 import { SeguridadInterceptorService } from './seguridad/seguridad-interceptor.service';
+import { IndiceUsuariosComponent } from './seguridad/indice-usuarios/indice-usuarios.component';
 
 
 
@@ -85,6 +86,7 @@ import { SeguridadInterceptorService } from './seguridad/seguridad-interceptor.s
     LoginComponent,
     RegistroComponent,
     FormularioAutentificacionComponent,
+    IndiceUsuariosComponent,
 
   ],
   imports: [
